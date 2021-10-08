@@ -31,6 +31,27 @@ public class Utility<T> {
         }
     }
 
+    public void binarySearch(String[] arr, String searchWord) {
+        Integer mid = binarySearchRecursively(arr, 0, arr.length, searchWord);
+
+        if (mid >= 0)
+            System.out.println("FOUND");
+        else
+            System.out.println("NOT FOUND");
+    }
+
+    private Integer binarySearchRecursively(String[] arr, int left, int right, String searchWord) {
+        int mid = left + (right - left) / 2;
+
+        if (arr[mid].equals(searchWord))
+            return mid;
+
+        if (searchWord.compareTo(arr[mid]) < 0)
+            return binarySearchRecursively(arr, left, mid - 1, searchWord);
+
+        return binarySearchRecursively(arr, mid + 1, right, searchWord);
+    }
+
     public void toPrint(T[] arr) {
         for (int i = 0; i < arr.length; i++) {
             System.out.print(arr[i] + " ");
