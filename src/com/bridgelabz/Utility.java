@@ -1,5 +1,7 @@
 package com.bridgelabz;
 
+import java.util.Scanner;
+
 public class Utility<T extends Comparable<T>> {
 
     public void toPrint(T[] arr) {
@@ -59,7 +61,7 @@ public class Utility<T extends Comparable<T>> {
         return binarySearch(arr, mid + 1, right, searchWord);
     }
 
-    public boolean Anagram(String word1, String  word2) {
+    public boolean Anagram(String word1, String word2) {
         char[] wordArr1 = this.splitWord(word1);
         char[] wordArr2 = this.splitWord(word2);
 
@@ -98,5 +100,27 @@ public class Utility<T extends Comparable<T>> {
             }
             arr[j + 1] = value;
         }
+    }
+
+    public void searchMagicNum(int num) {
+        searchRecursively(0, num);
+    }
+
+    private int searchRecursively(int left, int right) {
+        int mid = (left + right) / 2;
+
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("If your number is " + mid + " then type Y else\n" +
+                "Type L if number is lesser\n" +
+                "Type R if number is grater");
+        String response = scanner.nextLine();
+
+        if (response.equals("Y"))
+            return mid;
+
+        if (response.equals("L"))
+            return searchRecursively(left, mid);
+
+        return searchRecursively(mid, right);
     }
 }
